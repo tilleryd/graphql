@@ -11,6 +11,7 @@ import (
 	"github.com/tilleryd/hackernews/graph"
 	"github.com/tilleryd/hackernews/graph/generated"
 
+	"github.com/tilleryd/hackernews/internal/auth"
 	database "github.com/tilleryd/hackernews/internal/pkg/db/mysql"
 )
 
@@ -23,6 +24,7 @@ func main() {
 	}
 
 	router := chi.NewRouter()
+	router.Use(auth.Middleware())
 
 	database.InitDB()
 	// database.Migrate()
